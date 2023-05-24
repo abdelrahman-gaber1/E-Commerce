@@ -5,7 +5,7 @@ const factory = require("./handlersFactory");
 // @desc    Get  products
 // @route   GET /api/v1/products
 // @access  Public
-const getProducts = factory.getAll(productModel, "Products"); //name in database
+const getProducts = factory.getAll(productModel, "Products");
 
 // @desc    Create product
 // @route   POST  /api/v1/products

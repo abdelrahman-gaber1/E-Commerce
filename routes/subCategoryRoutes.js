@@ -1,8 +1,5 @@
 const express = require("express");
 
-// بتخليك تاكسس برامس موجوده في راوت تانيه
-// mergeParams: Allow us to access parameters on other routers
-// ex: We need to access categoryId from category router
 const router = express.Router({ mergeParams: true });
 
 const {

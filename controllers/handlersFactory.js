@@ -18,7 +18,6 @@ const deleteOne = (Model) =>
 
 const updateOne = (Model) =>
   asyncHandler(async (req, res, next) => {
-    // بتاخد تلت حجات ال اي دي التعديل و عايز ترجع الداتا بعد ولا قبل التعديل
     const updateDocument = await Model.findByIdAndUpdate(
       req.params.id,
       req.body,
@@ -36,32 +35,6 @@ const createOne = (Model) =>
   asyncHandler(async (req, res) => {
     const newDocument = await Model.create(req.body);
     res.status(201).json({ data: newDocument });
-    // const name = req.body.name;
-    // // طريقه اخري لعمل create
-    // try {
-    //   const newCategory = await CategoryModel.create({
-    //     name,
-    //     slug: slugify(name),
-    //   });
-    //   res.status(201).json({ data: category });
-    // } catch (err) {
-    //   res.status(400).send(err);
-    // }
-
-    // // طريقه اخري لعمل create
-    // CategoryModel.create({ name, slug: slugify(name) })
-    //   .then((category) => res.status(201).json({ data: category }))
-    //   .catch((err) => res.status(400).send(err));
-
-    // const newCategory = new CategoryModel({ name });
-    // newCategory
-    //   .save()
-    //   .then((result) => {
-    //     res.json(result);
-    //   })
-    //   .catch((err) => {
-    //     res.json(err);
-    //   });
   });
 
 const getOne = (Model) =>
@@ -88,7 +61,7 @@ const getAll = (Model, modelName) =>
       .filter()
       .paginate(documentsCount)
       .limitFields();
-    // Excute Query
+    // Execute Query
     const { mongooseQuery, paginationResult } = apiFeature;
     const documents = await mongooseQuery;
     res

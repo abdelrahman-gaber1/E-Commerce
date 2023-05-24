@@ -1,10 +1,7 @@
-// عملية الكونيكت بالداتا بيز بتاعتي
-
 const mongoose = require("mongoose");
 
 const dbconniction = () => {
   mongoose.connect(process.env.DB_URL).then((conn) => {
-    // بيرجعلي الهوست الي عامل عليه كونيكشن
     console.log(`DataBase Connected : ${conn.connection.host}`);
   });
 };

@@ -10,7 +10,6 @@ exports.createProductValidator = [
     .withMessage("must be at least 3 chars")
     .notEmpty()
     .withMessage("Product required")
-    // val عباره عن قيمة الفيلد الي هيا فيه هنا التايتل
     .custom((val, { req }) => {
       req.body.slug = slugify(val);
       return true;
@@ -80,11 +79,6 @@ exports.createProductValidator = [
     .isMongoId()
     .withMessage("Invalid ID formate")
     .custom((subcategoriesIds) =>
-      // _id : $exists :true معناه ايه الكلام ده بقوله روح الداتا بيز وهات كل السب كاتيجوري
-      // الي ال اي دي بتاعهم موجود اي ليهم اي دي
-      // لاحظ كده كده كل الساب كاتيجوري ليهم اي دي فا هيرجع كل الساب كاتيجوري
-      // $in :subcategoriesIds وبعد كده الساب كا تيجوري الي انت جبتها عايزها يكون فيها الايديهات دي بس
-      //هيرجعلي ال اي دي هات الي متوافقه بين الاتنين بس
       subCategoryModel
         .find({ _id: { $exists: true, $in: subcategoriesIds } })
         .then((result) => {
@@ -94,8 +88,6 @@ exports.createProductValidator = [
           }
         })
     )
-    // من خلال ال اي دي بتاع الكاتيجوري الي جايلي هجيب كل الساب كاتيجوري الي تنتمي ليه
-    // وبعد كده اشوف هل ال ايديهات الي هوا مديهالي جزء من ال اي ديهات دي ولا لا
     .custom((val, { req }) =>
       subCategoryModel
         .find({ category: req.body.category })

@@ -1,11 +1,8 @@
-// Check || param الجزء الي هعمل فاليديشن عليه
 const { check, body } = require("express-validator");
 const slugify = require("slugify");
 const validatorMiddleware = require("../../middlewares/validatormiddelware");
 
 const getcatagoryvalidator = [
-  //همسك ال اي دي من البرام و اشوف هل هوا اي دي صح ولا لا
-  // الرولز الي هعمل عليها الفالديشن
   check("id").isMongoId().withMessage("In Valid Category Id Format"),
   validatorMiddleware,
 ];
